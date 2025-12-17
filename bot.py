@@ -3,6 +3,8 @@ import asyncio
 import argparse
 from dataclasses import dataclass
 from datetime import datetime, UTC, timedelta
+
+import dotenv
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.types import (
@@ -14,76 +16,8 @@ from aiogram.types import (
 from db import init_db, get_new_aparts
 from dotenv import load_dotenv
 
-
-def parse_arguments():
-    """
-    Парсит аргументы командной строки для настройки бота.
-
-    :returns: Объект с аргументами командной строки.
-    :rtype: argparse.Namespace
-    """
-    parser = argparse.ArgumentParser(
-        description='Telegram бот для мониторинга объявлений о недвижимости',
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Примеры использования:
-  # Запуск с параметрами по умолчанию (из .env)
-  python bot.py
-
-  # Запуск с явным указанием токена
-  python bot.py --token "YOUR_BOT_TOKEN"
-
-  # Запуск с указанием БД и интервала проверки
-  python bot.py --db-url "postgres://user:pass@localhost/db" --check-interval 60
-
-  # Использование альтернативного .env файла
-  python bot.py --env-file /path/to/.env
-        """
-    )
-
-    parser.add_argument(
-        '--token',
-        type=str,
-        help='Токен Telegram бота (переопределяет TELEGRAM_TOKEN из .env)'
-    )
-
-    parser.add_argument(
-        '--db-url',
-        type=str,
-        help='URL подключения к PostgreSQL (переопределяет DB_URL из .env)'
-    )
-
-    parser.add_argument(
-        '--env-file',
-        type=str,
-        default='.env',
-        help='Путь к файлу с переменными окружения (по умолчанию: .env)'
-    )
-
-    parser.add_argument(
-        '--check-interval',
-        type=int,
-        default=30,
-        help='Интервал проверки новых объявлений в секундах (по умолчанию: 30)'
-    )
-
-    parser.add_argument(
-        '--search-limit',
-        type=int,
-        default=100,
-        help='Максимальное количество объявлений за один запрос (по умолчанию: 100)'
-    )
-
-    return parser.parse_args()
-
-
-CONFIG = {
-    'token': None,
-    'db_url': None,
-    'check_interval': 30,
-    'search_limit': 100,
-}
-
+print(f"[bot] DB_URL: {os.getenv('DB_URL')}")
+print(f"[bot] TELEGRAM_TOKEN: {'установлен' if os.getenv('TELEGRAM_TOKEN') else 'НЕ установлен'}")
 
 @dataclass
 class UserState:
@@ -252,7 +186,7 @@ async def on_callback(callback: CallbackQuery, bot: Bot):
                 return
 
             state.searching = True
-            state.since = datetime.now(UTC) - timedelta(minutes=4)
+            state.since = datetime.now(UTC) - timedelta(minutes=1)
             await callback.message.answer(
                 "Поиск запущен.\n"
                 "Будут приходить новые объявления.",
@@ -409,13 +343,13 @@ async def search_loop(bot: Bot, chat_id: int):
                     max_price=state.max_price,
                     rooms=state.rooms,
                     since=state.since,
-                    limit=CONFIG['search_limit'],
+                    limit=100,
                 )
 
                 print(f"[search_loop] since={state.since!r}, найдено {len(ads)} объявлений")
 
-                if len(ads) == CONFIG['search_limit']:
-                    print(f"[WARNING] Достигнут лимит {CONFIG['search_limit']}! Возможно есть еще объявления!")
+                if len(ads) == 100:
+                    print(f"[WARNING] Достигнут лимит 100! Возможно есть еще объявления!")
 
                 if ads:
                     for ad in ads:
@@ -436,11 +370,11 @@ async def search_loop(bot: Bot, chat_id: int):
                     state.since = max_created_at
                     print(f"[search_loop] обновлен since до {state.since!r}")
 
-                await asyncio.sleep(CONFIG['check_interval'])
+                await asyncio.sleep(int(os.getenv("PARSE_INTERVAL", "300")))
 
             except Exception as e:
                 print(f"[search_loop] ошибка в итерации для чата {chat_id}: {e}")
-                await asyncio.sleep(CONFIG['check_interval'])
+                await asyncio.sleep(int(os.getenv("PARSE_INTERVAL", "300")))
 
         print(f"[search_loop] выход из цикла для чата {chat_id}")
 
@@ -463,35 +397,9 @@ async def main():
     :raises RuntimeError: Если переменная окружения TELEGRAM_TOKEN не задана.
     """
     try:
-        args = parse_arguments()
-
-        if args.env_file:
-            load_dotenv(args.env_file)
-        else:
-            load_dotenv()
-
-        CONFIG['token'] = args.token or os.getenv("TELEGRAM_TOKEN")
-        CONFIG['db_url'] = args.db_url or os.getenv("DB_URL")
-        CONFIG['check_interval'] = args.check_interval
-        CONFIG['search_limit'] = args.search_limit
-
-        if args.db_url:
-            os.environ["DB_URL"] = args.db_url
-
-        if not CONFIG['token']:
-            raise RuntimeError(
-                "TELEGRAM_TOKEN не задан. Используйте --token или установите в .env файле"
-            )
-
-        print(f"[bot] Инициализация с параметрами:")
-        print(f"  - Check interval: {CONFIG['check_interval']}s")
-        print(f"  - Search limit: {CONFIG['search_limit']}")
-        print(f"  - Env file: {args.env_file}")
-
         init_db()
-        print("[bot] База данных инициализирована")
 
-        bot = Bot(token=CONFIG['token'])
+        bot = Bot(str(os.getenv("TELEGRAM_TOKEN")))
         dp = Dispatcher()
 
         dp.message.register(cmd_start, Command("start"))
