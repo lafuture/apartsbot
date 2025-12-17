@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>bot API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>bot</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="bot.cmd_start"><code class="name flex">
+<span>async def <span class="ident">cmd_start</span></span>(<span>message: aiogram.types.message.Message)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def cmd_start(message: Message):
+    &#34;&#34;&#34;
+    Обрабатывает команду /start и отправляет приветственное сообщение
+    с инструкциями и основной клавиатурой.
+
+    :param message: Входящее сообщение с командой /start.
+    :type message: Message
+    &#34;&#34;&#34;
+    try:
+        state = get_state(message.chat.id)
+        text = (
+            &#34;Привет! Я бот, который шлёт новые объявления о недвижимости с Авито.\n\n&#34;
+            &#34;Настрой фильтры и запусти поиск!&#34;
+        )
+        await message.answer(text, reply_markup=main_keyboard(state))
+    except Exception as e:
+        print(f&#34;[cmd_start] Ошибка: {e}&#34;)
+        try:
+            await message.answer(&#34;Произошла ошибка. Попробуйте позже.&#34;)
+        except Exception:
+            pass</code></pre>
+</details>
+<div class="desc"><p>Обрабатывает команду /start и отправляет приветственное сообщение
+с инструкциями и основной клавиатурой.</p>
+<p>:param message: Входящее сообщение с командой /start.
+:type message: Message</p></div>
+</dd>
+<dt id="bot.get_state"><code class="name flex">
+<span>def <span class="ident">get_state</span></span>(<span>chat_id: int) ‑> <a title="bot.UserState" href="#bot.UserState">UserState</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_state(chat_id: int) -&gt; UserState:
+    &#34;&#34;&#34;
+    Возвращает состояние пользователя по chat_id,
+    создавая его при первом обращении.
+
+    :param chat_id: Идентификатор чата Telegram.
+    :type chat_id: int
+    :returns: Объект состояния пользователя для данного чата.
+    :rtype: UserState
+    &#34;&#34;&#34;
+    if chat_id not in user_states:
+        user_states[chat_id] = UserState()
+    return user_states[chat_id]</code></pre>
+</details>
+<div class="desc"><p>Возвращает состояние пользователя по chat_id,
+создавая его при первом обращении.</p>
+<p>:param chat_id: Идентификатор чата Telegram.
+:type chat_id: int
+:returns: Объект состояния пользователя для данного чата.
+:rtype: UserState</p></div>
+</dd>
+<dt id="bot.main"><code class="name flex">
+<span>async def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def main():
+    &#34;&#34;&#34;
+    Точка входа бота: инициализирует БД, создаёт бота и диспетчер
+    и запускает long polling.
+
+    :raises RuntimeError: Если переменная окружения TELEGRAM_TOKEN не задана.
+    &#34;&#34;&#34;
+    try:
+        args = parse_arguments()
+
+        if args.env_file:
+            load_dotenv(args.env_file)
+        else:
+            load_dotenv()
+
+        CONFIG[&#39;token&#39;] = args.token or os.getenv(&#34;TELEGRAM_TOKEN&#34;)
+        CONFIG[&#39;db_url&#39;] = args.db_url or os.getenv(&#34;DB_URL&#34;)
+        CONFIG[&#39;check_interval&#39;] = args.check_interval
+        CONFIG[&#39;search_limit&#39;] = args.search_limit
+
+        if args.db_url:
+            os.environ[&#34;DB_URL&#34;] = args.db_url
+
+        if not CONFIG[&#39;token&#39;]:
+            raise RuntimeError(
+                &#34;TELEGRAM_TOKEN не задан. Используйте --token или установите в .env файле&#34;
+            )
+
+        print(f&#34;[bot] Инициализация с параметрами:&#34;)
+        print(f&#34;  - Check interval: {CONFIG[&#39;check_interval&#39;]}s&#34;)
+        print(f&#34;  - Search limit: {CONFIG[&#39;search_limit&#39;]}&#34;)
+        print(f&#34;  - Env file: {args.env_file}&#34;)
+
+        init_db()
+        print(&#34;[bot] База данных инициализирована&#34;)
+
+        bot = Bot(token=CONFIG[&#39;token&#39;])
+        dp = Dispatcher()
+
+        dp.message.register(cmd_start, Command(&#34;start&#34;))
+        dp.callback_query.register(
+            on_callback,
+            F.data.in_({&#34;set_price&#34;, &#34;set_rooms&#34;, &#34;start_search&#34;, &#34;stop_search&#34;}),
+        )
+        dp.message.register(on_message, F.text)
+
+        print(&#34;[bot] Запуск polling...&#34;)
+        await dp.start_polling(bot)
+
+    except Exception as e:
+        print(f&#34;[bot] Критическая ошибка: {e}&#34;)
+        raise RuntimeError(f&#34;Не удалось запустить бота: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Точка входа бота: инициализирует БД, создаёт бота и диспетчер
+и запускает long polling.</p>
+<p>:raises RuntimeError: Если переменная окружения TELEGRAM_TOKEN не задана.</p></div>
+</dd>
+<dt id="bot.main_keyboard"><code class="name flex">
+<span>def <span class="ident">main_keyboard</span></span>(<span>state: <a title="bot.UserState" href="#bot.UserState">UserState</a>) ‑> aiogram.types.inline_keyboard_markup.InlineKeyboardMarkup</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main_keyboard(state: UserState) -&gt; InlineKeyboardMarkup:
+    &#34;&#34;&#34;
+    Строит основную inline-клавиатуру с текущими настройками фильтров.
+    Клавиатура включает кнопки для установки диапазона цены, выбора
+    количества комнат и запуска поиска.
+
+    :param state: Текущее состояние пользователя.
+    :type state: UserState
+    :returns: Объект inline-клавиатуры для главного меню.
+    :rtype: InlineKeyboardMarkup
+    &#34;&#34;&#34;
+    if state.min_price or state.max_price:
+        parts = []
+        if state.min_price:
+            parts.append(f&#34;от {state.min_price}&#34;)
+        if state.max_price:
+            parts.append(f&#34;до {state.max_price}&#34;)
+        price_text = &#34;💲 Цена: &#34; + &#34; &#34;.join(parts)
+    else:
+        price_text = &#34;💲 Установить цену&#34;
+
+    if state.rooms:
+        rooms_str = &#34;, &#34;.join(
+            [&#34;студия&#34; if r == 0 else f&#34;{r}&#34; for r in state.rooms]
+        )
+        rooms_text = &#34;🏠 Комнаты: &#34; + rooms_str
+    else:
+        rooms_text = &#34;🏠 Установить комнаты&#34;
+
+    kb = [
+        [InlineKeyboardButton(text=price_text, callback_data=&#34;set_price&#34;)],
+        [InlineKeyboardButton(text=rooms_text, callback_data=&#34;set_rooms&#34;)],
+        [InlineKeyboardButton(text=&#34;▶️ Запустить поиск&#34;, callback_data=&#34;start_search&#34;)],
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=kb)</code></pre>
+</details>
+<div class="desc"><p>Строит основную inline-клавиатуру с текущими настройками фильтров.
+Клавиатура включает кнопки для установки диапазона цены, выбора
+количества комнат и запуска поиска.</p>
+<p>:param state: Текущее состояние пользователя.
+:type state: UserState
+:returns: Объект inline-клавиатуры для главного меню.
+:rtype: InlineKeyboardMarkup</p></div>
+</dd>
+<dt id="bot.on_callback"><code class="name flex">
+<span>async def <span class="ident">on_callback</span></span>(<span>callback: aiogram.types.callback_query.CallbackQuery,<br>bot: aiogram.client.bot.Bot)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def on_callback(callback: CallbackQuery, bot: Bot):
+    &#34;&#34;&#34;
+    Обрабатывает нажатия на inline-кнопки в основном меню бота.
+    В зависимости от callback_data переводит пользователя в режим
+    ввода цены или комнат, запускает или останавливает поиск.
+
+    :param callback: Объект callback-запроса от Telegram.
+    :type callback: CallbackQuery
+    :param bot: Экземпляр бота для отправки сообщений.
+    :type bot: Bot
+    &#34;&#34;&#34;
+    try:
+        chat_id = callback.message.chat.id
+        state = get_state(chat_id)
+
+        if callback.data == &#34;set_price&#34;:
+            state.waiting_for_price = True
+            state.waiting_for_rooms = False
+            await callback.message.answer(
+                &#34;Введи диапазон цены, например:\n&#34;
+                &#34;30000-60000\n&#34;
+                &#34;Или только минимум, например:\n&#34;
+                &#34;40000&#34;
+            )
+            await callback.answer()
+            return
+
+        if callback.data == &#34;set_rooms&#34;:
+            state.waiting_for_rooms = True
+            state.waiting_for_price = False
+            await callback.message.answer(
+                &#34;Введи список комнат через запятую.\n&#34;
+                &#34;Примеры:\n&#34;
+                &#34;студия и 1-2к: 0,1,2\n&#34;
+                &#34;только 2 и 3к: 2,3&#34;
+            )
+            await callback.answer()
+            return
+
+        if callback.data == &#34;start_search&#34;:
+            if state.searching:
+                await callback.answer(&#34;Поиск уже запущен&#34;, show_alert=True)
+                return
+
+            state.searching = True
+            state.since = datetime.now(UTC) - timedelta(minutes=4)
+            await callback.message.answer(
+                &#34;Поиск запущен.\n&#34;
+                &#34;Будут приходить новые объявления.&#34;,
+                reply_markup=stop_keyboard()
+            )
+            await callback.answer()
+            asyncio.create_task(search_loop(bot, chat_id))
+            return
+
+        if callback.data == &#34;stop_search&#34;:
+            if not state.searching:
+                await callback.answer(&#34;Поиск уже остановлен&#34;)
+                return
+
+            state.searching = False
+            await callback.message.answer(&#34;Поиск остановлен.&#34;)
+            await callback.answer()
+            return
+
+        await callback.answer(&#34;Неизвестная команда&#34;)
+
+    except Exception as e:
+        print(f&#34;[on_callback] Ошибка: {e}&#34;)
+        try:
+            await callback.answer(&#34;Произошла ошибка&#34;, show_alert=True)
+        except Exception:
+            pass</code></pre>
+</details>
+<div class="desc"><p>Обрабатывает нажатия на inline-кнопки в основном меню бота.
+В зависимости от callback_data переводит пользователя в режим
+ввода цены или комнат, запускает или останавливает поиск.</p>
+<p>:param callback: Объект callback-запроса от Telegram.
+:type callback: CallbackQuery
+:param bot: Экземпляр бота для отправки сообщений.
+:type bot: Bot</p></div>
+</dd>
+<dt id="bot.on_message"><code class="name flex">
+<span>async def <span class="ident">on_message</span></span>(<span>message: aiogram.types.message.Message)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def on_message(message: Message):
+    &#34;&#34;&#34;
+    Обрабатывает входящие текстовые сообщения пользователей.
+    В зависимости от текущего состояния пользователя воспринимает
+    сообщение как ввод цены, комнат или команду /start.
+
+    :param message: Входящее текстовое сообщение от пользователя.
+    :type message: Message
+    &#34;&#34;&#34;
+    try:
+        chat_id = message.chat.id
+        state = get_state(chat_id)
+
+        if message.text == &#34;/start&#34;:
+            await cmd_start(message)
+            return
+
+        if state.waiting_for_price:
+            try:
+                raw = message.text.replace(&#34; &#34;, &#34;&#34;)
+                min_p = None
+                max_p = None
+
+                if &#34;-&#34; in raw:
+                    left, right = raw.split(&#34;-&#34;, maxsplit=1)
+                    if left:
+                        try:
+                            min_p = int(left)
+                        except ValueError:
+                            min_p = None
+                    if right:
+                        try:
+                            max_p = int(right)
+                        except ValueError:
+                            max_p = None
+                else:
+                    try:
+                        min_p = int(raw)
+                    except ValueError:
+                        min_p = None
+
+                state.min_price = min_p
+                state.max_price = max_p
+                state.waiting_for_price = False
+
+                await message.answer(
+                    f&#34;Фильтр по цене обновлён.\n&#34;
+                    f&#34;Минимум: {state.min_price or &#39;—&#39;}\n&#34;
+                    f&#34;Максимум: {state.max_price or &#39;—&#39;}&#34;,
+                    reply_markup=main_keyboard(state),
+                )
+            except Exception as e:
+                print(f&#34;[on_message] Ошибка обработки цены: {e}&#34;)
+                await message.answer(&#34;Ошибка обработки. Попробуйте снова.&#34;)
+            return
+
+        if state.waiting_for_rooms:
+            try:
+                raw = message.text.replace(&#34; &#34;, &#34;&#34;)
+                rooms_list: list[int] = []
+
+                if raw:
+                    for part in raw.split(&#34;,&#34;):
+                        if not part:
+                            continue
+                        try:
+                            val = int(part)
+                            rooms_list.append(val)
+                        except ValueError:
+                            continue
+
+                state.rooms = rooms_list or None
+                state.waiting_for_rooms = False
+
+                if state.rooms:
+                    rooms_str = &#34;, &#34;.join(
+                        [&#34;студия&#34; if r == 0 else f&#34;{r}&#34; for r in state.rooms]
+                    )
+                    txt = f&#34;Фильтр по комнатам обновлён.\nКомнаты: {rooms_str}&#34;
+                else:
+                    txt = &#34;Фильтр по комнатам сброшен.&#34;
+
+                await message.answer(txt, reply_markup=main_keyboard(state))
+            except Exception as e:
+                print(f&#34;[on_message] Ошибка обработки комнат: {e}&#34;)
+                await message.answer(&#34;Ошибка обработки. Попробуйте снова.&#34;)
+            return
+
+        await message.answer(&#34;Используй /start для начала.&#34;)
+
+    except Exception as e:
+        print(f&#34;[on_message] Критическая ошибка: {e}&#34;)
+        try:
+            await message.answer(&#34;Произошла ошибка. Попробуйте /start&#34;)
+        except Exception:
+            pass</code></pre>
+</details>
+<div class="desc"><p>Обрабатывает входящие текстовые сообщения пользователей.
+В зависимости от текущего состояния пользователя воспринимает
+сообщение как ввод цены, комнат или команду /start.</p>
+<p>:param message: Входящее текстовое сообщение от пользователя.
+:type message: Message</p></div>
+</dd>
+<dt id="bot.parse_arguments"><code class="name flex">
+<span>def <span class="ident">parse_arguments</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_arguments():
+    &#34;&#34;&#34;
+    Парсит аргументы командной строки для настройки бота.
+
+    :returns: Объект с аргументами командной строки.
+    :rtype: argparse.Namespace
+    &#34;&#34;&#34;
+    parser = argparse.ArgumentParser(
+        description=&#39;Telegram бот для мониторинга объявлений о недвижимости&#39;,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=&#34;&#34;&#34;
+Примеры использования:
+  # Запуск с параметрами по умолчанию (из .env)
+  python bot.py
+
+  # Запуск с явным указанием токена
+  python bot.py --token &#34;YOUR_BOT_TOKEN&#34;
+
+  # Запуск с указанием БД и интервала проверки
+  python bot.py --db-url &#34;postgres://user:pass@localhost/db&#34; --check-interval 60
+
+  # Использование альтернативного .env файла
+  python bot.py --env-file /path/to/.env
+        &#34;&#34;&#34;
+    )
+
+    parser.add_argument(
+        &#39;--token&#39;,
+        type=str,
+        help=&#39;Токен Telegram бота (переопределяет TELEGRAM_TOKEN из .env)&#39;
+    )
+
+    parser.add_argument(
+        &#39;--db-url&#39;,
+        type=str,
+        help=&#39;URL подключения к PostgreSQL (переопределяет DB_URL из .env)&#39;
+    )
+
+    parser.add_argument(
+        &#39;--env-file&#39;,
+        type=str,
+        default=&#39;.env&#39;,
+        help=&#39;Путь к файлу с переменными окружения (по умолчанию: .env)&#39;
+    )
+
+    parser.add_argument(
+        &#39;--check-interval&#39;,
+        type=int,
+        default=30,
+        help=&#39;Интервал проверки новых объявлений в секундах (по умолчанию: 30)&#39;
+    )
+
+    parser.add_argument(
+        &#39;--search-limit&#39;,
+        type=int,
+        default=100,
+        help=&#39;Максимальное количество объявлений за один запрос (по умолчанию: 100)&#39;
+    )
+
+    return parser.parse_args()</code></pre>
+</details>
+<div class="desc"><p>Парсит аргументы командной строки для настройки бота.</p>
+<p>:returns: Объект с аргументами командной строки.
+:rtype: argparse.Namespace</p></div>
+</dd>
+<dt id="bot.search_loop"><code class="name flex">
+<span>async def <span class="ident">search_loop</span></span>(<span>bot: aiogram.client.bot.Bot, chat_id: int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def search_loop(bot: Bot, chat_id: int):
+    &#34;&#34;&#34;
+    Цикл фонового поиска новых объявлений для конкретного пользователя.
+    Периодически опрашивает базу данных на наличие новых объявлений,
+    соответствующих фильтрам пользователя, и отправляет их в чат.
+
+    :param bot: Экземпляр бота для отправки сообщений.
+    :type bot: Bot
+    :param chat_id: Идентификатор чата пользователя.
+    :type chat_id: int
+    &#34;&#34;&#34;
+    state = get_state(chat_id)
+
+    try:
+        if state.since is None:
+            state.since = datetime.now(UTC)
+        elif state.since.tzinfo is None:
+            state.since = state.since.replace(tzinfo=UTC)
+
+        print(f&#34;[search_loop] СТАРТ для чата {chat_id}, since={state.since!r}&#34;)
+        print(f&#34;[search_loop] Фильтры: min={state.min_price}, max={state.max_price}, rooms={state.rooms}&#34;)
+
+        while state.searching:
+            try:
+                ads = get_new_aparts(
+                    min_price=state.min_price,
+                    max_price=state.max_price,
+                    rooms=state.rooms,
+                    since=state.since,
+                    limit=CONFIG[&#39;search_limit&#39;],
+                )
+
+                print(f&#34;[search_loop] since={state.since!r}, найдено {len(ads)} объявлений&#34;)
+
+                if len(ads) == CONFIG[&#39;search_limit&#39;]:
+                    print(f&#34;[WARNING] Достигнут лимит {CONFIG[&#39;search_limit&#39;]}! Возможно есть еще объявления!&#34;)
+
+                if ads:
+                    for ad in ads:
+                        try:
+                            text = (
+                                f&#34;Цена: {ad[&#39;price&#39;]} ₽\n&#34;
+                                f&#34;Комнат: {ad[&#39;rooms&#39;]}\n&#34;
+                                f&#34;{ad[&#39;title&#39;]}\n&#34;
+                                f&#34;{ad[&#39;link&#39;]}&#34;
+                            )
+                            await bot.send_message(chat_id, text, reply_markup=stop_keyboard())
+                        except Exception as e:
+                            print(f&#34;[search_loop] Ошибка отправки сообщения: {e}&#34;)
+
+                    max_created_at = max(ad[&#34;created_at&#34;] for ad in ads)
+                    if max_created_at.tzinfo is None:
+                        max_created_at = max_created_at.replace(tzinfo=UTC)
+                    state.since = max_created_at
+                    print(f&#34;[search_loop] обновлен since до {state.since!r}&#34;)
+
+                await asyncio.sleep(CONFIG[&#39;check_interval&#39;])
+
+            except Exception as e:
+                print(f&#34;[search_loop] ошибка в итерации для чата {chat_id}: {e}&#34;)
+                await asyncio.sleep(CONFIG[&#39;check_interval&#39;])
+
+        print(f&#34;[search_loop] выход из цикла для чата {chat_id}&#34;)
+
+    except Exception as e:
+        print(f&#34;[search_loop] критическая ошибка для чата {chat_id}: {e}&#34;)
+        try:
+            await bot.send_message(
+                chat_id,
+                &#34;Произошла критическая ошибка в поиске. Перезапустите поиск.&#34;
+            )
+        except Exception:
+            pass</code></pre>
+</details>
+<div class="desc"><p>Цикл фонового поиска новых объявлений для конкретного пользователя.
+Периодически опрашивает базу данных на наличие новых объявлений,
+соответствующих фильтрам пользователя, и отправляет их в чат.</p>
+<p>:param bot: Экземпляр бота для отправки сообщений.
+:type bot: Bot
+:param chat_id: Идентификатор чата пользователя.
+:type chat_id: int</p></div>
+</dd>
+<dt id="bot.stop_keyboard"><code class="name flex">
+<span>def <span class="ident">stop_keyboard</span></span>(<span>) ‑> aiogram.types.inline_keyboard_markup.InlineKeyboardMarkup</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop_keyboard() -&gt; InlineKeyboardMarkup:
+    &#34;&#34;&#34;
+    Строит inline-клавиатуру с одной кнопкой для остановки поиска.
+
+    :returns: Клавиатура с кнопкой «Остановить поиск».
+    :rtype: InlineKeyboardMarkup
+    &#34;&#34;&#34;
+    return InlineKeyboardMarkup(
+        inline_keyboard=[
+            [InlineKeyboardButton(text=&#34;⛔ Остановить поиск&#34;, callback_data=&#34;stop_search&#34;)]
+        ]
+    )</code></pre>
+</details>
+<div class="desc"><p>Строит inline-клавиатуру с одной кнопкой для остановки поиска.</p>
+<p>:returns: Клавиатура с кнопкой «Остановить поиск».
+:rtype: InlineKeyboardMarkup</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="bot.UserState"><code class="flex name class">
+<span>class <span class="ident">UserState</span></span>
+<span>(</span><span>waiting_for_price: bool = False,<br>min_price: int | None = None,<br>max_price: int | None = None,<br>waiting_for_rooms: bool = False,<br>rooms: list[int] | None = None,<br>searching: bool = False,<br>since: datetime.datetime | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class UserState:
+    &#34;&#34;&#34;
+    Хранит состояние одного пользователя бота:
+    настройки фильтров и флаг активного поиска.
+
+    :ivar waiting_for_price: Ожидается ли ввод диапазона цены.
+    :type waiting_for_price: bool
+    :ivar min_price: Минимальная цена фильтра, если задана.
+    :type min_price: int | None
+    :ivar max_price: Максимальная цена фильтра, если задана.
+    :type max_price: int | None
+    :ivar waiting_for_rooms: Ожидается ли ввод количества комнат.
+    :type waiting_for_rooms: bool
+    :ivar rooms: Список выбранных вариантов комнат (0 = студия).
+    :type rooms: list[int] | None
+    :ivar searching: Признак активного фонового поиска объявлений.
+    :type searching: bool
+    :ivar since: Метка времени, начиная с которой ищутся новые объявления.
+    :type since: datetime | None
+    &#34;&#34;&#34;
+    waiting_for_price: bool = False
+    min_price: int | None = None
+    max_price: int | None = None
+    waiting_for_rooms: bool = False
+    rooms: list[int] | None = None
+    searching: bool = False
+    since: datetime | None = None</code></pre>
+</details>
+<div class="desc"><p>Хранит состояние одного пользователя бота:
+настройки фильтров и флаг активного поиска.</p>
+<p>:ivar waiting_for_price: Ожидается ли ввод диапазона цены.
+:type waiting_for_price: bool
+:ivar min_price: Минимальная цена фильтра, если задана.
+:type min_price: int | None
+:ivar max_price: Максимальная цена фильтра, если задана.
+:type max_price: int | None
+:ivar waiting_for_rooms: Ожидается ли ввод количества комнат.
+:type waiting_for_rooms: bool
+:ivar rooms: Список выбранных вариантов комнат (0 = студия).
+:type rooms: list[int] | None
+:ivar searching: Признак активного фонового поиска объявлений.
+:type searching: bool
+:ivar since: Метка времени, начиная с которой ищутся новые объявления.
+:type since: datetime | None</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="bot.UserState.max_price"><code class="name">var <span class="ident">max_price</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.min_price"><code class="name">var <span class="ident">min_price</span> : int | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.rooms"><code class="name">var <span class="ident">rooms</span> : list[int] | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.searching"><code class="name">var <span class="ident">searching</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.since"><code class="name">var <span class="ident">since</span> : datetime.datetime | None</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.waiting_for_price"><code class="name">var <span class="ident">waiting_for_price</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="bot.UserState.waiting_for_rooms"><code class="name">var <span class="ident">waiting_for_rooms</span> : bool</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="bot.cmd_start" href="#bot.cmd_start">cmd_start</a></code></li>
+<li><code><a title="bot.get_state" href="#bot.get_state">get_state</a></code></li>
+<li><code><a title="bot.main" href="#bot.main">main</a></code></li>
+<li><code><a title="bot.main_keyboard" href="#bot.main_keyboard">main_keyboard</a></code></li>
+<li><code><a title="bot.on_callback" href="#bot.on_callback">on_callback</a></code></li>
+<li><code><a title="bot.on_message" href="#bot.on_message">on_message</a></code></li>
+<li><code><a title="bot.parse_arguments" href="#bot.parse_arguments">parse_arguments</a></code></li>
+<li><code><a title="bot.search_loop" href="#bot.search_loop">search_loop</a></code></li>
+<li><code><a title="bot.stop_keyboard" href="#bot.stop_keyboard">stop_keyboard</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="bot.UserState" href="#bot.UserState">UserState</a></code></h4>
+<ul class="two-column">
+<li><code><a title="bot.UserState.max_price" href="#bot.UserState.max_price">max_price</a></code></li>
+<li><code><a title="bot.UserState.min_price" href="#bot.UserState.min_price">min_price</a></code></li>
+<li><code><a title="bot.UserState.rooms" href="#bot.UserState.rooms">rooms</a></code></li>
+<li><code><a title="bot.UserState.searching" href="#bot.UserState.searching">searching</a></code></li>
+<li><code><a title="bot.UserState.since" href="#bot.UserState.since">since</a></code></li>
+<li><code><a title="bot.UserState.waiting_for_price" href="#bot.UserState.waiting_for_price">waiting_for_price</a></code></li>
+<li><code><a title="bot.UserState.waiting_for_rooms" href="#bot.UserState.waiting_for_rooms">waiting_for_rooms</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>parser API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>parser</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="parser.fetch_html"><code class="name flex">
+<span>async def <span class="ident">fetch_html</span></span>(<span>) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def fetch_html() -&gt; str:
+    &#34;&#34;&#34;
+    Загружает HTML страницы выдачи Avito с помощью Playwright.
+    Открывает браузер Chromium, переходит по AVITO_URL, ждёт загрузку и
+    возможное прохождение капчи, скроллит страницу вниз и возвращает HTML.
+
+    :returns: HTML-код страницы выдачи с объявлениями.
+    :rtype: str
+    :raises RuntimeError: При ошибках загрузки страницы.
+    &#34;&#34;&#34;
+    try:
+        async with async_playwright() as p:
+            try:
+                browser = await p.chromium.launch(headless=False)
+            except Exception as e:
+                raise RuntimeError(f&#34;Не удалось запустить браузер: {e}&#34;)
+
+            try:
+                page = await browser.new_page(
+                    user_agent=(
+                        &#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) &#34;
+                        &#34;AppleWebKit/605.1.15 (KHTML, like Gecko) &#34;
+                        &#34;Version/18.3.1 Safari/605.1.15&#34;
+                    )
+                )
+
+                print(&#34;[playwright] открываю&#34;, AVITO_URL)
+                await page.goto(AVITO_URL, timeout=120_000)
+
+                print(&#34;[playwright] жду 20 секунд для загрузки / капчи&#34;)
+                await page.wait_for_timeout(20_000)
+
+                try:
+                    await page.wait_for_selector(&#34;div[data-marker=&#39;item&#39;]&#34;, timeout=30_000)
+                    print(&#34;[playwright] найден селектор item&#34;)
+                except Exception as e:
+                    print(&#34;[playwright] не дождался item:&#34;, e)
+
+                await page.evaluate(&#34;window.scrollBy(0, document.body.scrollHeight);&#34;)
+                await page.wait_for_timeout(2_000)
+
+                html = await page.content()
+                print(&#34;[playwright] длина html:&#34;, len(html))
+
+                return html
+
+            except Exception as e:
+                raise RuntimeError(f&#34;Ошибка при загрузке страницы: {e}&#34;)
+            finally:
+                await browser.close()
+
+    except Exception as e:
+        raise RuntimeError(f&#34;Критическая ошибка fetch_html: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Загружает HTML страницы выдачи Avito с помощью Playwright.
+Открывает браузер Chromium, переходит по AVITO_URL, ждёт загрузку и
+возможное прохождение капчи, скроллит страницу вниз и возвращает HTML.</p>
+<p>:returns: HTML-код страницы выдачи с объявлениями.
+:rtype: str
+:raises RuntimeError: При ошибках загрузки страницы.</p></div>
+</dd>
+<dt id="parser.in_digits"><code class="name flex">
+<span>def <span class="ident">in_digits</span></span>(<span>s: str) ‑> bool</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def in_digits(s: str) -&gt; bool:
+    &#34;&#34;&#34;
+    Проверяет, что строка состоит только из цифр.
+
+    :param s: Входная строка для проверки.
+    :type s: str
+    :returns: True, если все символы строки являются цифрами, иначе False.
+    :rtype: bool
+    &#34;&#34;&#34;
+    try:
+        return all(ch.isdigit() for ch in s)
+    except (TypeError, AttributeError) as e:
+        raise ValueError(f&#34;Некорректный тип данных для проверки цифр: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Проверяет, что строка состоит только из цифр.</p>
+<p>:param s: Входная строка для проверки.
+:type s: str
+:returns: True, если все символы строки являются цифрами, иначе False.
+:rtype: bool</p></div>
+</dd>
+<dt id="parser.main"><code class="name flex">
+<span>async def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def main():
+    &#34;&#34;&#34;
+    Точка входа: инициализирует базу данных и запускает бесконечный цикл парсинга.
+
+    :raises RuntimeError: При критических ошибках инициализации.
+    &#34;&#34;&#34;
+    try:
+        print(&#34;[parser] Инициализация базы данных...&#34;)
+        init_db()
+        print(&#34;[parser] База данных инициализирована успешно&#34;)
+
+        await parse_loop()
+
+    except Exception as e:
+        print(f&#34;[parser] Критическая ошибка: {e}&#34;)
+        raise RuntimeError(f&#34;Не удалось запустить парсер: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Точка входа: инициализирует базу данных и запускает бесконечный цикл парсинга.</p>
+<p>:raises RuntimeError: При критических ошибках инициализации.</p></div>
+</dd>
+<dt id="parser.parse_and_save"><code class="name flex">
+<span>def <span class="ident">parse_and_save</span></span>(<span>html: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parse_and_save(html: str):
+    &#34;&#34;&#34;
+    Разбирает HTML страницы Avito, извлекает объявления и сохраняет их в БД.
+    Для каждого блока ``div[data-marker=&#39;item&#39;]`` формирует объект Ad,
+    берёт нужные поля и вызывает add_apart для сохранения в таблицу aparts.
+
+    :param html: HTML-код страницы выдачи Avito.
+    :type html: str
+    :raises ValueError: При ошибках парсинга HTML.
+    &#34;&#34;&#34;
+    try:
+        soup = BeautifulSoup(html, &#34;html.parser&#34;)
+        items = soup.select(&#34;div[data-marker=&#39;item&#39;]&#34;)
+        print(&#34;[parse] items:&#34;, len(items))
+
+        if not items:
+            raise ValueError(&#34;Не найдено ни одного объявления на странице&#34;)
+
+        added = 0
+
+        for g in items:
+            try:
+                id_attr = g.get(&#34;data-item-id&#34;, &#34;&#34;)
+                try:
+                    int_id = int(id_attr)
+                except (ValueError, TypeError):
+                    continue
+
+                title_el = g.select_one(&#34;a[data-marker=&#39;item-title&#39;]&#34;)
+                title = title_el.get_text(strip=True) if title_el else &#34;&#34;
+
+                rooms, squares, apart_floor, house_floor = split_title(title)
+
+                price_meta = g.select_one(&#34;p[data-marker=&#39;item-price&#39;] meta[itemprop=&#39;price&#39;]&#34;)
+                price_str = price_meta.get(&#34;content&#34;, &#34;&#34;) if price_meta else &#34;0&#34;
+                try:
+                    price = int(price_str)
+                except (ValueError, TypeError):
+                    price = 0
+
+                add_el = g.select_one(&#34;p[data-marker=&#39;item-specific-params&#39;]&#34;)
+                add_text = add_el.get_text(strip=True) if add_el else &#34;&#34;
+                deposit, comission = split_add(add_text)
+
+                metro = &#34;&#34;
+                time_to_metro = 0
+                loc_p = g.select(&#34;div[data-marker=&#39;item-location&#39;] p&#34;)
+                if len(loc_p) &gt; 1:
+                    spans = loc_p[1].find_all(&#34;span&#34;)
+                    if len(spans) &gt; 1:
+                        metro = spans[1].get_text(strip=True)
+                    if len(spans) &gt; 2:
+                        time_to_metro = refactor_time_to_metro(
+                            spans[2].get_text(strip=True)
+                        )
+
+                link_el = g.find(&#34;a&#34;)
+                link = link_el.get(&#34;href&#34;, &#34;&#34;) if link_el else &#34;&#34;
+                if link and not link.startswith(&#34;http&#34;):
+                    link = urljoin(&#34;https://www.avito.ru&#34;, link)
+
+                ad = Ad(
+                    id=int_id,
+                    title=title,
+                    link=link,
+                    price=price,
+                    comission=comission,
+                    squares=squares,
+                    apart_floor=apart_floor,
+                    house_floor=house_floor,
+                    rooms=rooms,
+                    deposit=deposit,
+                    metro=metro,
+                    time_to_metro=time_to_metro,
+                )
+
+                try:
+                    add_apart({
+                        &#34;id&#34;: ad.id,
+                        &#34;title&#34;: ad.title,
+                        &#34;link&#34;: ad.link,
+                        &#34;price&#34;: ad.price,
+                        &#34;rooms&#34;: ad.rooms,
+                    })
+                    print(f&#34;✓ added {ad.id} - {ad.title}&#34;)
+                    added += 1
+                except Exception as e:
+                    print(f&#34;[parse] add_apart error {ad.id}: {e}&#34;)
+
+            except Exception as e:
+                print(f&#34;[parse] ошибка обработки объявления: {e}&#34;)
+                continue
+
+        print(&#34;[parse] total added:&#34;, added)
+
+    except Exception as e:
+        raise ValueError(f&#34;Критическая ошибка parse_and_save: {e}&#34;)</code></pre>
+</details>
+<div class="desc"><p>Разбирает HTML страницы Avito, извлекает объявления и сохраняет их в БД.
+Для каждого блока <code>div[data-marker='item']</code> формирует объект Ad,
+берёт нужные поля и вызывает add_apart для сохранения в таблицу aparts.</p>
+<p>:param html: HTML-код страницы выдачи Avito.
+:type html: str
+:raises ValueError: При ошибках парсинга HTML.</p></div>
+</dd>
+<dt id="parser.parse_loop"><code class="name flex">
+<span>async def <span class="ident">parse_loop</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">async def parse_loop():
+    &#34;&#34;&#34;
+    Бесконечный цикл парсинга с интервалом PARSE_INTERVAL секунд.
+
+    :raises RuntimeError: При критических ошибках парсинга.
+    &#34;&#34;&#34;
+    print(f&#34;[parser] Запуск парсера с интервалом {PARSE_INTERVAL} секунд&#34;)
+
+    consecutive_errors = 0
+    max_consecutive_errors = 5
+
+    while True:
+        try:
+            print(f&#34;[parser] Начало парсинга&#34;)
+            html = await fetch_html()
+            parse_and_save(html)
+            print(f&#34;[parser] Парсинг завершён. Следующий запуск через {PARSE_INTERVAL} секунд&#34;)
+            consecutive_errors = 0
+
+        except Exception as e:
+            consecutive_errors += 1
+            print(f&#34;[parser] Ошибка при парсинге ({consecutive_errors}/{max_consecutive_errors}): {e}&#34;)
+
+            if consecutive_errors &gt;= max_consecutive_errors:
+                raise RuntimeError(
+                    f&#34;Превышено максимальное количество последовательных ошибок ({max_consecutive_errors}). &#34;
+                    &#34;Парсер остановлен.&#34;
+                )
+
+            print(f&#34;[parser] Повтор через {PARSE_INTERVAL} секунд&#34;)
+
+        await asyncio.sleep(PARSE_INTERVAL)</code></pre>
+</details>
+<div class="desc"><p>Бесконечный цикл парсинга с интервалом PARSE_INTERVAL секунд.</p>
+<p>:raises RuntimeError: При критических ошибках парсинга.</p></div>
+</dd>
+<dt id="parser.refactor_time_to_metro"><code class="name flex">
+<span>def <span class="ident">refactor_time_to_metro</span></span>(<span>time_to_metro: str) ‑> int</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def refactor_time_to_metro(time_to_metro: str) -&gt; int:
+    &#34;&#34;&#34;
+    Извлекает числовые значения из строки с временем до метро
+    и возвращает максимальное найденное значение.
+    Строка может содержать текст и диапазоны, функция находит все целые
+    числа и выбирает среди них наибольшее.
+
+    :param time_to_metro: Строка с описанием времени до метро,
+        например ``&#34;10–15 минут пешком&#34;``.
+    :type time_to_metro: str
+    :returns: Максимальное найденное целое число, либо 0, если чисел нет.
+    :rtype: int
+    &#34;&#34;&#34;
+    try:
+        s = time_to_metro.replace(&#34;–&#34;, &#34; &#34;).split()
+        res = 0
+        for t in s:
+            if in_digits(t):
+                tdigit = int(t)
+                if tdigit &gt; res:
+                    res = tdigit
+        return res
+    except Exception as e:
+        print(f&#34;[refactor_time_to_metro] Ошибка обработки &#39;{time_to_metro}&#39;: {e}&#34;)
+        return 0</code></pre>
+</details>
+<div class="desc"><p>Извлекает числовые значения из строки с временем до метро
+и возвращает максимальное найденное значение.
+Строка может содержать текст и диапазоны, функция находит все целые
+числа и выбирает среди них наибольшее.</p>
+<p>:param time_to_metro: Строка с описанием времени до метро,
+например <code>"10–15 минут пешком"</code>.
+:type time_to_metro: str
+:returns: Максимальное найденное целое число, либо 0, если чисел нет.
+:rtype: int</p></div>
+</dd>
+<dt id="parser.split_add"><code class="name flex">
+<span>def <span class="ident">split_add</span></span>(<span>add: str) ‑> tuple[int, int]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def split_add(add: str) -&gt; tuple[int, int]:
+    &#34;&#34;&#34;
+    Разбирает строку с дополнительными условиями (залог, комиссия)
+    и возвращает их числовые значения.
+    Поддерживаются фразы вида «без залога», «залог 30 000», «без комиссии»,
+    «комиссия 50%»; из текста извлекаются числа для залога и комиссии.
+
+    :param add: Строка с дополнительными условиями, разделёнными « · ».
+    :type add: str
+    :returns: Кортеж (размер залога в рублях, размер комиссии в рублях).
+    :rtype: tuple[int, int]
+    &#34;&#34;&#34;
+    try:
+        parts = add.split(&#34; · &#34;)
+        deposit = 0
+        comission = 0
+
+        for p in parts:
+            p = p.strip().replace(&#34;\u00A0&#34;, &#34; &#34;)
+            pl = p.lower()
+
+            if &#34;без залога&#34; in pl:
+                deposit = 0
+            elif &#34;залог&#34; in pl:
+                m = re.search(r&#34;(\d[\d\s]*)&#34;, p)
+                if m:
+                    num = m.group(1).replace(&#34; &#34;, &#34;&#34;)
+                    try:
+                        deposit = int(num)
+                    except ValueError:
+                        pass
+
+            if &#34;без комиссии&#34; in pl:
+                comission = 0
+            elif &#34;комис&#34; in pl:
+                m = re.search(r&#34;(\d[\d\s]*)&#34;, p)
+                if m:
+                    num = m.group(1).replace(&#34; &#34;, &#34;&#34;)
+                    try:
+                        comission = int(num)
+                    except ValueError:
+                        pass
+
+        return deposit, comission
+    except Exception as e:
+        print(f&#34;[split_add] Ошибка обработки &#39;{add}&#39;: {e}&#34;)
+        return 0, 0</code></pre>
+</details>
+<div class="desc"><p>Разбирает строку с дополнительными условиями (залог, комиссия)
+и возвращает их числовые значения.
+Поддерживаются фразы вида «без залога», «залог 30 000», «без комиссии»,
+«комиссия 50%»; из текста извлекаются числа для залога и комиссии.</p>
+<p>:param add: Строка с дополнительными условиями, разделёнными « · ».
+:type add: str
+:returns: Кортеж (размер залога в рублях, размер комиссии в рублях).
+:rtype: tuple[int, int]</p></div>
+</dd>
+<dt id="parser.split_title"><code class="name flex">
+<span>def <span class="ident">split_title</span></span>(<span>title: str) ‑> tuple[int, float, int, int]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def split_title(title: str) -&gt; tuple[int, float, int, int]:
+    &#34;&#34;&#34;
+    Разбирает заголовок объявления и извлекает количество комнат,
+    площадь, этаж квартиры и этажность дома.
+    Поддерживает указание площади в квадратных метрах, форматы с «студия»,
+    а также этажность в виде ``&#34;этаж/этажность&#34;``.
+
+    :param title: Заголовок объявления Avito, содержащий параметры квартиры.
+    :type title: str
+    :returns: Кортеж (кол-во комнат, площадь в м², этаж, этажность дома).
+    :rtype: tuple[int, float, int, int]
+    &#34;&#34;&#34;
+    try:
+        title = title.replace(&#34;эт.&#34;, &#34;&#34;).replace(&#34;этаж&#34;, &#34;&#34;).replace(&#34;\u00A0&#34;, &#34; &#34;)
+        squares = 0.0
+        rooms = 0
+        apart_floor = 0
+        house_floor = 0
+
+        # Площадь
+        m = re.search(r&#34;(\d+(?:[.,]\d+)?)\s*м²&#34;, title)
+        if m:
+            s = m.group(1).replace(&#34;,&#34;, &#34;.&#34;)
+            try:
+                squares = float(s)
+            except ValueError:
+                pass
+
+        # Комнаты
+        if &#34;студ&#34; in title.lower():
+            rooms = 0
+        else:
+            m = re.search(r&#34;(\d+)[-\s]*к&#34;, title)
+            if m:
+                try:
+                    rooms = int(m.group(1))
+                except ValueError:
+                    pass
+
+        # Этажи
+        m = re.search(r&#34;(\d+)\s*\/\s*(\d+)&#34;, title)
+        if m:
+            try:
+                apart_floor = int(m.group(1))
+                house_floor = int(m.group(2))
+            except ValueError:
+                pass
+
+        return rooms, squares, apart_floor, house_floor
+    except Exception as e:
+        print(f&#34;[split_title] Ошибка обработки &#39;{title}&#39;: {e}&#34;)
+        return 0, 0.0, 0, 0</code></pre>
+</details>
+<div class="desc"><p>Разбирает заголовок объявления и извлекает количество комнат,
+площадь, этаж квартиры и этажность дома.
+Поддерживает указание площади в квадратных метрах, форматы с «студия»,
+а также этажность в виде <code>"этаж/этажность"</code>.</p>
+<p>:param title: Заголовок объявления Avito, содержащий параметры квартиры.
+:type title: str
+:returns: Кортеж (кол-во комнат, площадь в м², этаж, этажность дома).
+:rtype: tuple[int, float, int, int]</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="parser.Ad"><code class="flex name class">
+<span>class <span class="ident">Ad</span></span>
+<span>(</span><span>id: int,<br>title: str,<br>link: str,<br>price: int,<br>comission: int,<br>squares: float,<br>apart_floor: int,<br>house_floor: int,<br>rooms: int,<br>deposit: int,<br>metro: str,<br>time_to_metro: int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass
+class Ad:
+    &#34;&#34;&#34;
+    Представляет одно объявление о сдаче квартиры с основными параметрами.
+
+    :ivar id: Уникальный идентификатор объявления на Avito.
+    :type id: int
+    :ivar title: Заголовок объявления.
+    :type title: str
+    :ivar link: Полная ссылка на страницу объявления.
+    :type link: str
+    :ivar price: Стоимость аренды в месяц в рублях.
+    :type price: int
+    :ivar comission: Размер комиссии в рублях.
+    :type comission: int
+    :ivar squares: Площадь квартиры в квадратных метрах.
+    :type squares: float
+    :ivar apart_floor: Этаж квартиры.
+    :type apart_floor: int
+    :ivar house_floor: Общее количество этажей в доме.
+    :type house_floor: int
+    :ivar rooms: Количество комнат (0 = студия).
+    :type rooms: int
+    :ivar deposit: Размер залога в рублях.
+    :type deposit: int
+    :ivar metro: Название ближайшей станции метро, если указано.
+    :type metro: str
+    :ivar time_to_metro: Время до метро в минутах, если указано.
+    :type time_to_metro: int
+    &#34;&#34;&#34;
+    id: int
+    title: str
+    link: str
+    price: int
+    comission: int
+    squares: float
+    apart_floor: int
+    house_floor: int
+    rooms: int
+    deposit: int
+    metro: str
+    time_to_metro: int</code></pre>
+</details>
+<div class="desc"><p>Представляет одно объявление о сдаче квартиры с основными параметрами.</p>
+<p>:ivar id: Уникальный идентификатор объявления на Avito.
+:type id: int
+:ivar title: Заголовок объявления.
+:type title: str
+:ivar link: Полная ссылка на страницу объявления.
+:type link: str
+:ivar price: Стоимость аренды в месяц в рублях.
+:type price: int
+:ivar comission: Размер комиссии в рублях.
+:type comission: int
+:ivar squares: Площадь квартиры в квадратных метрах.
+:type squares: float
+:ivar apart_floor: Этаж квартиры.
+:type apart_floor: int
+:ivar house_floor: Общее количество этажей в доме.
+:type house_floor: int
+:ivar rooms: Количество комнат (0 = студия).
+:type rooms: int
+:ivar deposit: Размер залога в рублях.
+:type deposit: int
+:ivar metro: Название ближайшей станции метро, если указано.
+:type metro: str
+:ivar time_to_metro: Время до метро в минутах, если указано.
+:type time_to_metro: int</p></div>
+<h3>Instance variables</h3>
+<dl>
+<dt id="parser.Ad.apart_floor"><code class="name">var <span class="ident">apart_floor</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.comission"><code class="name">var <span class="ident">comission</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.deposit"><code class="name">var <span class="ident">deposit</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.house_floor"><code class="name">var <span class="ident">house_floor</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.id"><code class="name">var <span class="ident">id</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.link"><code class="name">var <span class="ident">link</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.metro"><code class="name">var <span class="ident">metro</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.price"><code class="name">var <span class="ident">price</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.rooms"><code class="name">var <span class="ident">rooms</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.squares"><code class="name">var <span class="ident">squares</span> : float</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.time_to_metro"><code class="name">var <span class="ident">time_to_metro</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="parser.Ad.title"><code class="name">var <span class="ident">title</span> : str</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="parser.fetch_html" href="#parser.fetch_html">fetch_html</a></code></li>
+<li><code><a title="parser.in_digits" href="#parser.in_digits">in_digits</a></code></li>
+<li><code><a title="parser.main" href="#parser.main">main</a></code></li>
+<li><code><a title="parser.parse_and_save" href="#parser.parse_and_save">parse_and_save</a></code></li>
+<li><code><a title="parser.parse_loop" href="#parser.parse_loop">parse_loop</a></code></li>
+<li><code><a title="parser.refactor_time_to_metro" href="#parser.refactor_time_to_metro">refactor_time_to_metro</a></code></li>
+<li><code><a title="parser.split_add" href="#parser.split_add">split_add</a></code></li>
+<li><code><a title="parser.split_title" href="#parser.split_title">split_title</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="parser.Ad" href="#parser.Ad">Ad</a></code></h4>
+<ul class="two-column">
+<li><code><a title="parser.Ad.apart_floor" href="#parser.Ad.apart_floor">apart_floor</a></code></li>
+<li><code><a title="parser.Ad.comission" href="#parser.Ad.comission">comission</a></code></li>
+<li><code><a title="parser.Ad.deposit" href="#parser.Ad.deposit">deposit</a></code></li>
+<li><code><a title="parser.Ad.house_floor" href="#parser.Ad.house_floor">house_floor</a></code></li>
+<li><code><a title="parser.Ad.id" href="#parser.Ad.id">id</a></code></li>
+<li><code><a title="parser.Ad.link" href="#parser.Ad.link">link</a></code></li>
+<li><code><a title="parser.Ad.metro" href="#parser.Ad.metro">metro</a></code></li>
+<li><code><a title="parser.Ad.price" href="#parser.Ad.price">price</a></code></li>
+<li><code><a title="parser.Ad.rooms" href="#parser.Ad.rooms">rooms</a></code></li>
+<li><code><a title="parser.Ad.squares" href="#parser.Ad.squares">squares</a></code></li>
+<li><code><a title="parser.Ad.time_to_metro" href="#parser.Ad.time_to_metro">time_to_metro</a></code></li>
+<li><code><a title="parser.Ad.title" href="#parser.Ad.title">title</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
